@@ -1,0 +1,3 @@
+base Doombot Legion
+base Hand Ninjas
+base Sentinals

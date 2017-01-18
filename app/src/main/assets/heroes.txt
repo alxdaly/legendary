@@ -1,0 +1,25 @@
+base Black Widow
+base Captain America
+base Cyclops
+base Deadpool
+base Emma Frost
+base Gambit
+base Hawkeye
+base Hulk
+base Iron Man
+base Nick Fury
+base Rogue
+base Spiderman
+base Storm
+base Thor
+base Wolverine
+deadpool Bob, Agent of Hydra
+deadpool Deadpool
+deadpool Slapstick
+deadpool Solo
+deadpool Stringray
+paint Black Cat
+paint Black Suited Spiderman
+paint Moon Knight
+paint Scarlet Spiderman
+paint Spider Woman

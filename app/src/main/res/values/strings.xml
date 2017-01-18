@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Legendary Setup Helper</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- StartActivity strings -->
+    <string name="P1">1 Player Game</string>
+    <string name="P2">2 Player Game</string>
+    <string name="P3">3 Player Game</string>
+    <string name="P4">4 Player Game</string>
+    <string name="P5">5 Player Game</string>
+
+    <!-- SetupActivity strings -->
+    <string name="mastermind">Mastermind: </string>
+    <string name="scheme">Scheme: </string>
+    <string name="villains">Villains: </string>
+    <string name="henchmen">Henchmen: </string>
+    <string name="P1hench">*Use only 3 cards</string>
+    <string name="heroes">Heroes: </string>
+    <string name="bystanders">Bystanders: </string>
+</resources>

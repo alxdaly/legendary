@@ -1,0 +1,8 @@
+base Dr. Doom
+base Loki
+base Magneto
+base Red Skull
+deadpool Evil Deadpool
+deadpool Macho Gomez
+paint Carnage
+paint Mysterio

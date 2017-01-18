@@ -1,0 +1,11 @@
+base Brotherhood
+base Enemies of Asgard
+base Hydra
+base Masters of Evil
+base Radiation
+base Skrulls
+base Spider-Foes
+deadpool Evil Deadpool Corpse
+deadpool Deadpool's "Friends"
+paint Maximum Carnage
+paint Sinister Six
