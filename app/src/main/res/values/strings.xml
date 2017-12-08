@@ -17,4 +17,91 @@
     <string name="P1hench">*Use only 3 cards</string>
     <string name="heroes">Heroes: </string>
     <string name="bystanders">Bystanders: </string>
+
+    <!-- Schemes strings -->
+    <string name="COSMIC_CUBE">Unleash the Power of the Cosmic Cube</string>
+    <string name="DARK_DIMENSION">Portals to the Dark Dimension</string>
+    <string name="NEGATIVE_ZONE">Negative Zone Prison Breakout</string>
+    <string name="MIDTOWN_BANK_ROBBERY">Midtown Bank Robbery</string>
+    <string name="CIVIL_WAR">Super Hero Civil War</string>
+    <string name="LEGACY_VIRUS">The Legacy Virus</string>
+    <string name="SECRET_INVASION">Secret Invasion of the Skrull Shapeshifters</string>
+    <string name="KILLBOTS">Replace Earth’s Leaders with Killbots</string>
+    <string name="DEADPOOL_KILLS_MARVEL">Deadpool Kills the Marvel Universe</string>
+    <string name="DEADPOOL_WANTS_CHIMICHANGA">Deadpool Wants a Chimichanga</string>
+    <string name="DEADPOOL_WRITES_SCHEME">Deadpool Writes a Scheme</string>
+    <string name="EVERYONE_HATES_DEADPOOL">Everybody Hates Deadpool</string>
+    <string name="HIDDEN_HEART_OF_DARKNESS">Hidden Heart of Darkness</string>
+    <string name="FIVE_FAMILIES">Five Families of Crime</string>
+    <string name="SILENCE_WITNESSES">Silence the Witnesses</string>
+    <string name="SPLIT_PERSONALITY_KILLER">Find the Split Personality Killer</string>
+    <string name="SPIDER_DNA">Splice Humans with Spider DNA</string>
+    <string name="CLONE_SAGA">The Clone Saga</string>
+    <string name="WEB_OF_LIES">Weave a Web of Lies</string>
+    <string name="DAILY_BUGLE">Invade the Daily Bugle News HQ</string>
+
+    <!-- Mastermind strings -->
+    <string name="RED_SKULL">Red Skull</string>
+    <string name="MAGNETO">Magneto</string>
+    <string name="LOKI">Loki</string>
+    <string name="DR_DOOM">Dr. Doom</string>
+    <string name="EVIL_DEADPOOL">Evil Deadpool</string>
+    <string name="MACHO_GOMEZ">Macho Gomez</string>
+    <string name="CHARLES_XAVIER_PROFESSOR_CRIME">Charles Xavier, Professor of Crime</string>
+    <string name="GOBLIN_UNDERWORLD_BOSS">The Goblin, Underworld Boss</string>
+    <string name="MYSTERIO">Mysterio</string>
+    <string name="CARNAGE">Carnage</string>
+
+    <!-- Villains strings -->
+    <string name="HYDRA">HYDRA</string>
+    <string name="SKRULLS">Skrulls</string>
+    <string name="SPIDER_FOES">Spider-Foes</string>
+    <string name="ENEMIES_OF_ASGARD">Spider-Foes</string>
+    <string name="BROTHERHOOD">Brotherhood</string>
+    <string name="RADIATION">Radiation</string>
+    <string name="MASTERS_OF_EVIL">Masters of Evil</string>
+    <string name="EVIL_DEADPOOL_CORPSE">Evil Deadpool Corpse</string>
+    <string name="DEADPOOL_FRIENDS">Deadpool’s “Friends”</string>
+    <string name="GOBLIN_FREAK_SHOW">Goblin’s Freak Show</string>
+    <string name="XMEN_NOIR">X-Men Noir</string>
+    <string name="MAXIUMUM_CARNAGE">Maximum Carnage</string>
+    <string name="SINISTER_SIX">Sinister Six</string>
+
+    <!-- Heroes strings -->
+    <string name="BLACK_WIDOW">Black Widow</string>
+    <string name="CAPT_AMERICA">Captain America</string>
+    <string name="IRON_MAN">Iron Man</string>
+    <string name="HULK">Hulk</string>
+    <string name="HAWKEYE">Hawkeye</string>
+    <string name="THOR">Thor</string>
+    <string name="STORM">Storm</string>
+    <string name="WOLVERINE">Wolverine</string>
+    <string name="CYCLOPS">Cyclops</string>
+    <string name="ROGUE">Rogue</string>
+    <string name="EMMA_FROST">Emma Frost</string>
+    <string name="GAMBIT">Gambit</string>
+    <string name="SPIDER_MAN">Spider-Man</string>
+    <string name="NICK_FURY">Nick Fury</string>
+    <string name="DEADPOOL_BASE">Deadpool (Base)</string>
+    <string name="DEADPOOL_DEADPOOL">Deadpool (Deadpool)</string>
+    <string name="SOLO">Solo</string>
+    <string name="SLAPSTICK">Slapstick</string>
+    <string name="BOB">Bob, Agent of HYDRA</string>
+    <string name="STINGRAY">Stingray</string>
+    <string name="ANGEL_NOIR">Angel Noir</string>
+    <string name="DAREDEVIL_NOIR">Daredevil Noir</string>
+    <string name="IRON_MAN_NOIR">Iron Man Noir</string>
+    <string name="LUKE_CAGE_NOIR">Luke Cage Noir</string>
+    <string name="SPIDER_MAN_NOIR">Spider-Man Noir</string>
+    <string name="SPIDER_WOMAN">Spider-Woman</string>
+    <string name="MOON_KNIGHT">Moon Knight</string>
+    <string name="BLACK_CAT">Black Cat</string>
+    <string name="SYMBIOTE_SPIDER_MAN">Symbiote Spider-Man</string>
+    <string name="SCARLET_SPIDER">Scarlet Spider</string>
+
+    <!-- Henchman strings -->
+    <string name="HAND_NINJAS">Hand Ninjas</string>
+    <string name="DOOMBOT_LEGION">Doombot Legion</string>
+    <string name="SAVAGE_LAND_MUTATES">Savage Land Mutates</string>
+    <string name="SENTINEL">Sentinel</string>
 </resources>

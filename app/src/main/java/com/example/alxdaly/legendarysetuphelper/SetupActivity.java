@@ -39,9 +39,9 @@ public class SetupActivity extends AppCompatActivity {
     private String notes;
     private Schemes scheme;
     private Mastermind mastermind;
-    private ArrayList<Villain> villains;
-    private ArrayList<Henchman> henchmen;
-    private ArrayList<Hero> heroes;
+    private List<Villain> villains;
+    private List<Henchman> henchmen;
+    private List<Hero> heroes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,9 @@ public class SetupActivity extends AppCompatActivity {
                 numBystanders = 12;
                 break;
         }
+        villains = new ArrayList<>();
+        heroes = new ArrayList<>();
+        henchmen = new ArrayList<>();
     }
 
     private void setupCards() throws IOException{
@@ -111,7 +114,7 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseScheme() {
-        scheme = Schemes.values()[random.nextInt(Schemes.values().length)];
+        scheme = Schemes.SPIDER_DNA;//Schemes.values()[random.nextInt(Schemes.values().length)];
         switch(scheme){
             case NEGATIVE_ZONE:
                 twists = 8;
@@ -196,6 +199,8 @@ public class SetupActivity extends AppCompatActivity {
             default:
                 twists = 8;
         }
+        TextView schemeLabel = (TextView) findViewById(R.id.schemeLabel);
+        schemeLabel.setText(scheme.toString());
     }
 
     private Hero chooseTeamIconHero(TeamIcons teamIcon){
