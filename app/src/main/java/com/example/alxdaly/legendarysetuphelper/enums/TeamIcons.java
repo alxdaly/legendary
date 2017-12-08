@@ -13,5 +13,6 @@ public enum TeamIcons {
     SHIELD,
     MERCS_FOR_MONEY,
     HYDRA,
-    MARVEL_KNIGHTS
+    MARVEL_KNIGHTS,
+    NONE
 }

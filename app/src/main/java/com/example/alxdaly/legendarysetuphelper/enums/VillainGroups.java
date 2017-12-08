@@ -18,6 +18,6 @@ public enum VillainGroups {
     DEADPOOL_FRIENDS,
     GOBLIN_FREAK_SHOW,
     XMEN_NOIR,
-    MAXIUMU_CARNAGE,
+    MAXIUMUM_CARNAGE,
     SINISTER_SIX
 }

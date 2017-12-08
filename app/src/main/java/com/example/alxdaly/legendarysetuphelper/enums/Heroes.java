@@ -26,7 +26,7 @@ public enum Heroes {
     SOLO,
     SLAPSTICK,
     BOB,
-    STRINGRAY,
+    STINGRAY,
     ANGEL_NOIR,
     DAREDEVIL_NOIR,
     IRON_MAN_NOIR,

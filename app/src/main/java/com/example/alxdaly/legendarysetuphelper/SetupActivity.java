@@ -6,11 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
+import com.example.alxdaly.legendarysetuphelper.enums.Heroes;
+import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
+import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
+import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
+import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
+import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
+import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
+import com.example.alxdaly.legendarysetuphelper.pojo.Mastermind;
+import com.example.alxdaly.legendarysetuphelper.pojo.Villain;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,11 +34,14 @@ public class SetupActivity extends AppCompatActivity {
     private int numHenchmen;
     private int numHeroes;
     private int numBystanders;
-    private ArrayList<Card> masterminds;
-    private ArrayList<Card> schemes;
-    private ArrayList<Card> villains;
-    private ArrayList<Card> henchmen;
-    private ArrayList<Card> heroes;
+
+    private int twists;
+    private String notes;
+    private Schemes scheme;
+    private Mastermind mastermind;
+    private ArrayList<Villain> villains;
+    private ArrayList<Henchman> henchmen;
+    private ArrayList<Hero> heroes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,160 +103,250 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void setupCards() throws IOException{
-        masterminds = parseCards("masterminds.txt");
-        schemes = parseCards("schemes.txt");
-        villains = parseCards("villains.txt");
-        henchmen = parseCards("henchmen.txt");
-        heroes = parseCards("heroes.txt");
-        chooseMastermind();
         chooseScheme();
-        getBystanders();
+        chooseMastermind();
         chooseVillains();
         chooseHenchmen();
         chooseHeroes();
     }
 
-    private ArrayList<Card> parseCards(String textFile) throws IOException {
-        ArrayList<Card> list = new ArrayList<>();
-        Card curr = new Card(null, 0);
-        AssetManager assetManager = getAssets();
-        InputStream file = assetManager.open(textFile);
-        Scanner scan = new Scanner(file);
-        while(scan.hasNextLine()){
-            Scanner word = new Scanner(scan.nextLine());
-            String expansion = word.next();
-            String name = "";
-            while(word.hasNext()){
-                name += word.next() + " ";
-            }
-            switch(expansion){
-                case "base":
-                    curr = new Card(name, 0);
-                    break;
-                case "deadpool":
-                    curr = new Card(name, 1);
-                    break;
-                case "paint":
-                    curr = new Card(name, 2);
-                    break;
-            }
-            list.add(curr);
-        }
-        return list;
-    }
-
-    private void chooseMastermind() {
-        TextView mastermindLabel = (TextView) findViewById(R.id.mastermindLabel);
-        int next = random.nextInt();
-        next = next % masterminds.size();
-        if(next < 0){
-            next *= -1;
-        }
-        mastermindLabel.setText(masterminds.get(next).getString());
-    }
-
     private void chooseScheme() {
-        TextView schemeLabel = (TextView) findViewById(R.id.schemeLabel);
-        int next = random.nextInt();
-        next = next % schemes.size();
-        if(next < 0){
-            next *= -1;
+        scheme = Schemes.values()[random.nextInt(Schemes.values().length)];
+        switch(scheme){
+            case NEGATIVE_ZONE:
+                twists = 8;
+                numHenchmen++;
+                break;
+            case MIDTOWN_BANK_ROBBERY:
+                twists = 8;
+                notes = "12 total Bystanders in the Villain Deck.\n";
+                break;
+            case CIVIL_WAR:
+                if(numPlayers <= 2){
+                    twists = 8;
+                    numHeroes = 4;
+                }
+                else if(numPlayers == 3){
+                    twists = 8;
+                }
+                else {
+                    twists = 5;
+                }
+                break;
+            case LEGACY_VIRUS:
+                twists = 8;
+                notes = "Wound stack holds 6 wounds per player.\n";
+                break;
+            case SECRET_INVASION:
+                twists = 8;
+                numHeroes = 6;
+                addVillain(new Villain(VillainGroups.SKRULLS));
+                notes = "Put 12 random heroes from Hero Deck into Villain Deck.\n";
+                break;
+            case KILLBOTS:
+                twists = 5;
+                notes = "3 additional Twists next to Scheme.\n18 Bystanders in Villain Deck.";
+                break;
+            case DEADPOOL_KILLS_MARVEL:
+                if(numPlayers == 2){
+                    numHeroes = 4;
+                }
+                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL));
+                if(numPlayers <= 3){
+                    twists = 6;
+                }
+                else {
+                    twists = 5;
+                }
+                break;
+            case DEADPOOL_WANTS_CHIMICHANGA:
+                twists = 6;
+                notes = "12 Bystanders in a Villain Deck.";
+                if(numPlayers >= 3){
+                    numVillains++;
+                }
+                break;
+            case DEADPOOL_WRITES_SCHEME:
+                twists = 6;
+                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL));
+                break;
+            case EVERYONE_HATES_DEADPOOL:
+                twists = 6;
+                addHero(chooseTeamIconHero(TeamIcons.MERCS_FOR_MONEY));
+                break;
+            case FIVE_FAMILIES:
+                twists = 8;
+                numVillains += 2;
+                break;
+            case SPIDER_DNA:
+                twists = 8;
+                addVillain(new Villain(VillainGroups.SINISTER_SIX));
+                break;
+            case DAILY_BUGLE:
+                twists = 8;
+                notes = "Add 6 extra Henchmen from single Henchmen Group to Hero Deck.";
+                break;
+            case SILENCE_WITNESSES:
+                twists = 6;
+                break;
+            case DARK_DIMENSION:
+            case WEB_OF_LIES:
+                twists = 7;
+                break;
+            default:
+                twists = 8;
         }
-        schemeLabel.setText(schemes.get(next).getString());
     }
 
-    private void getBystanders() {
-        TextView bystanderLabel = (TextView) findViewById(R.id.bystanderLabel);
-        bystanderLabel.setText(numBystanders + "");
+    private Hero chooseTeamIconHero(TeamIcons teamIcon){
+        List<Hero> heroes = new ArrayList<>();
+        switch(teamIcon){
+            case AVENGERS:
+                heroes.add(new Hero(Heroes.BLACK_WIDOW));
+                heroes.add(new Hero(Heroes.CAPT_AMERICA));
+                heroes.add(new Hero(Heroes.IRON_MAN));
+                heroes.add(new Hero(Heroes.HULK));
+                heroes.add(new Hero(Heroes.HAWKEYE));
+                heroes.add(new Hero(Heroes.THOR));
+                heroes.add(new Hero(Heroes.IRON_MAN_NOIR));
+                break;
+            case XMEN:
+                heroes.add(new Hero(Heroes.STORM));
+                heroes.add(new Hero(Heroes.WOLVERINE));
+                heroes.add(new Hero(Heroes.CYCLOPS));
+                heroes.add(new Hero(Heroes.ROGUE));
+                heroes.add(new Hero(Heroes.EMMA_FROST));
+                heroes.add(new Hero(Heroes.GAMBIT));
+                heroes.add(new Hero(Heroes.ANGEL_NOIR));
+                break;
+            case SPIDER_FRIENDS:
+                heroes.add(new Hero(Heroes.SPIDER_MAN));
+                heroes.add(new Hero(Heroes.SPIDER_MAN_NOIR));
+                heroes.add(new Hero(Heroes.SPIDER_WOMAN));
+                heroes.add(new Hero(Heroes.BLACK_CAT));
+                heroes.add(new Hero(Heroes.SYMBIOTE_SPIDER_MAN));
+                heroes.add(new Hero(Heroes.SCARLET_SPIDER));
+                break;
+            case SHIELD:
+                heroes.add(new Hero(Heroes.NICK_FURY));
+                break;
+            case MERCS_FOR_MONEY:
+                heroes.add(new Hero(Heroes.DEADPOOL_DEADPOOL));
+                heroes.add(new Hero(Heroes.SOLO));
+                heroes.add(new Hero(Heroes.SLAPSTICK));
+                heroes.add(new Hero(Heroes.STINGRAY));
+                break;
+            case HYDRA:
+                heroes.add(new Hero(Heroes.BOB));
+                break;
+            case MARVEL_KNIGHTS:
+                heroes.add(new Hero(Heroes.DAREDEVIL_NOIR));
+                heroes.add(new Hero(Heroes.LUKE_CAGE_NOIR));
+                heroes.add(new Hero(Heroes.MOON_KNIGHT));
+                break;
+            default:
+                heroes.add(new Hero(Heroes.DEADPOOL_BASE));
+        }
+        int option = random.nextInt(heroes.size());
+        return heroes.get(option);
+    }
+
+    private void chooseMastermind(){
+        mastermind = new Mastermind(Masterminds.values()[random.nextInt(Masterminds.values().length)]);
+        switch(mastermind.getMastermind()){
+            case RED_SKULL:
+                addVillain(new Villain(VillainGroups.HYDRA));
+                break;
+            case MAGNETO:
+                addVillain(new Villain(VillainGroups.BROTHERHOOD));
+                break;
+            case LOKI:
+                addVillain(new Villain(VillainGroups.ENEMIES_OF_ASGARD));
+                break;
+            case DR_DOOM:
+                addHenchman(new Henchman(Henchmen.DOOMBOT_LEGION));
+                break;
+            case EVIL_DEADPOOL:
+                addVillain(new Villain(VillainGroups.EVIL_DEADPOOL_CORPSE));
+                break;
+            case MACHO_GOMEZ:
+                addVillain(new Villain(VillainGroups.DEADPOOL_FRIENDS));
+                break;
+            case CHARLES_XAVIER_PROFESSOR_CRIME:
+                addVillain(new Villain(VillainGroups.XMEN_NOIR));
+                break;
+            case GOBLIN_UNDERWORLD_BOSS:
+                addVillain(new Villain(VillainGroups.GOBLIN_FREAK_SHOW));
+                break;
+            case MYSTERIO:
+                addVillain(new Villain(VillainGroups.SINISTER_SIX));
+                break;
+            case CARNAGE:
+                addVillain(new Villain(VillainGroups.MAXIUMUM_CARNAGE));
+            default:
+        }
     }
 
     private void chooseVillains() {
-        TextView villainLabel = (TextView) findViewById(R.id.villainLabel);
-        int villainCount = 0;
-        if(numPlayers > 1){
-            Card find = null;
-            TextView mastermindLabel = (TextView) findViewById(R.id.mastermindLabel);
-            String mastermind = mastermindLabel.getText().toString();
-            if(mastermind.contains("Red Skull")){
-                find = new Card("Hydra", 0);
+        while(numVillains > 0){
+            VillainGroups villain = VillainGroups.values()[random.nextInt(VillainGroups.values().length)];
+            boolean pickedAlready = false;
+            for(Villain next: villains){
+                if(next.getVillain() == villain){
+                    pickedAlready = true;
+                    break;
+                }
             }
-            else if(mastermind.contains("Loki")){
-                find = new Card("Enemies of Asgard", 0);
+            if(!pickedAlready){
+                addVillain(new Villain(villain));
             }
-            else if(mastermind.contains("Magneto")){
-                find = new Card("Brotherhood", 0);
-            }
-            else if(mastermind.contains("Evil Deadpool")){
-                find = new Card("Evil Deadpool Corpse", 1);
-            }
-            else if(mastermind.contains("Macho Gomez")){
-                find = new Card("Deadpool's \"Friends\"", 1);
-            }
-            else if(mastermind.contains("Mysterio")){
-                find = new Card("Sinister Six", 2);
-            }
-            else if(mastermind.contains("Carnage")){
-                find = new Card("Maximum Carnage", 2);
-            }
-            if(find != null) {
-                villains.remove(find);
-                villainLabel.setText(find.getString() + "\n");
-                villainCount++;
-            }
-        }
-        while(villainCount < numVillains){
-            int next = random.nextInt();
-            next = next % villains.size();
-            if(next < 0){
-                next *= -1;
-            }
-            villainLabel.append(villains.remove(next).getString() + "\n");
-            villainCount++;
-        }
-    }
-
-    private void chooseHenchmen() {
-        int henchmenCount = 0;
-        TextView henchmenLabel = (TextView) findViewById(R.id.henchmenLabel);
-        if(numPlayers > 1){
-            Card find = null;
-            TextView mastermindLabel = (TextView) findViewById(R.id.mastermindLabel);
-            String mastermind = mastermindLabel.getText().toString();
-            if(mastermind.contains("Dr. Doom")){
-                find = new Card("Doombot Legion", 0);
-            }
-            if(find != null) {
-                henchmen.remove(find);
-                henchmenLabel.setText(find.getString() + "\n");
-                henchmenCount++;
-            }
-        }
-        else{
-            TextView henchmen1P = (TextView) findViewById(R.id.p1henchLabel);
-            henchmen1P.setVisibility(View.VISIBLE);
-        }
-        while(henchmenCount < numHenchmen){
-            int next = random.nextInt();
-            next = next % henchmen.size();
-            if(next < 0){
-                next *= -1;
-            }
-            henchmenLabel.append(henchmen.remove(next).getString() + "\n");
-            henchmenCount++;
         }
     }
 
     private void chooseHeroes() {
-        int heroCount = 0;
-        TextView heroesLabel = (TextView) findViewById(R.id.heroesLabel);
-        while(heroCount < numHeroes){
-            int next = random.nextInt();
-            next = next % heroes.size();
-            if(next < 0){
-                next *= -1;
+        while(numHeroes > 0){
+            Heroes hero = Heroes.values()[random.nextInt(Heroes.values().length)];
+            boolean pickedAlready = false;
+            for(Hero next: heroes){
+                if(next.getHero() == hero){
+                    pickedAlready = true;
+                    break;
+                }
             }
-            heroesLabel.append(heroes.remove(next).getString() + "\n");
-            heroCount++;
+            if(!pickedAlready){
+                addHero(new Hero(hero));
+            }
         }
+    }
+
+    private void chooseHenchmen() {
+        while(numHenchmen > 0){
+            Henchmen henchman = Henchmen.values()[random.nextInt(Henchmen.values().length)];
+            boolean pickedAlready = false;
+            for(Henchman next: henchmen){
+                if(next.getHenchmen() == henchman){
+                    pickedAlready = true;
+                    break;
+                }
+            }
+            if(!pickedAlready){
+                addHenchman(new Henchman(henchman));
+            }
+        }
+    }
+
+    private void addVillain(Villain villain){
+        villains.add(villain);
+        numVillains--;
+    }
+
+    private void addHero(Hero hero){
+        heroes.add(hero);
+        numHeroes--;
+    }
+
+    private void addHenchman(Henchman henchman){
+        henchmen.add(henchman);
+        numHenchmen--;
     }
 }
