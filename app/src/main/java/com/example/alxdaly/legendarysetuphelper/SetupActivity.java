@@ -16,7 +16,10 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
 import com.example.alxdaly.legendarysetuphelper.pojo.Mastermind;
+import com.example.alxdaly.legendarysetuphelper.pojo.Scheme;
 import com.example.alxdaly.legendarysetuphelper.pojo.Villain;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +40,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private int twists;
     private String notes;
-    private Schemes scheme;
+    private Scheme scheme;
     private Mastermind mastermind;
     private List<Villain> villains;
     private List<Henchman> henchmen;
@@ -107,6 +110,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private void setupCards() throws IOException{
         chooseScheme();
+        getBystanders();
         chooseMastermind();
         chooseVillains();
         chooseHenchmen();
@@ -114,8 +118,8 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseScheme() {
-        scheme = Schemes.SPIDER_DNA;//Schemes.values()[random.nextInt(Schemes.values().length)];
-        switch(scheme){
+        scheme = new Scheme(Schemes.values()[random.nextInt(Schemes.values().length)], this);
+        switch(scheme.getScheme()){
             case NEGATIVE_ZONE:
                 twists = 8;
                 numHenchmen++;
@@ -143,7 +147,7 @@ public class SetupActivity extends AppCompatActivity {
             case SECRET_INVASION:
                 twists = 8;
                 numHeroes = 6;
-                addVillain(new Villain(VillainGroups.SKRULLS));
+                addVillain(new Villain(VillainGroups.SKRULLS, this));
                 notes = "Put 12 random heroes from Hero Deck into Villain Deck.\n";
                 break;
             case KILLBOTS:
@@ -154,7 +158,7 @@ public class SetupActivity extends AppCompatActivity {
                 if(numPlayers == 2){
                     numHeroes = 4;
                 }
-                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL));
+                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL, this));
                 if(numPlayers <= 3){
                     twists = 6;
                 }
@@ -171,7 +175,7 @@ public class SetupActivity extends AppCompatActivity {
                 break;
             case DEADPOOL_WRITES_SCHEME:
                 twists = 6;
-                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL));
+                addHero(new Hero(Heroes.DEADPOOL_DEADPOOL, this));
                 break;
             case EVERYONE_HATES_DEADPOOL:
                 twists = 6;
@@ -183,7 +187,7 @@ public class SetupActivity extends AppCompatActivity {
                 break;
             case SPIDER_DNA:
                 twists = 8;
-                addVillain(new Villain(VillainGroups.SINISTER_SIX));
+                addVillain(new Villain(VillainGroups.SINISTER_SIX, this));
                 break;
             case DAILY_BUGLE:
                 twists = 8;
@@ -200,96 +204,103 @@ public class SetupActivity extends AppCompatActivity {
                 twists = 8;
         }
         TextView schemeLabel = (TextView) findViewById(R.id.schemeLabel);
-        schemeLabel.setText(scheme.toString());
+        schemeLabel.setText(scheme.getCardTitle());
+    }
+
+    private void getBystanders() {
+        TextView bystanderLabel = (TextView) findViewById(R.id.bystanderLabel);
+        bystanderLabel.setText(numBystanders + "");
     }
 
     private Hero chooseTeamIconHero(TeamIcons teamIcon){
         List<Hero> heroes = new ArrayList<>();
         switch(teamIcon){
             case AVENGERS:
-                heroes.add(new Hero(Heroes.BLACK_WIDOW));
-                heroes.add(new Hero(Heroes.CAPT_AMERICA));
-                heroes.add(new Hero(Heroes.IRON_MAN));
-                heroes.add(new Hero(Heroes.HULK));
-                heroes.add(new Hero(Heroes.HAWKEYE));
-                heroes.add(new Hero(Heroes.THOR));
-                heroes.add(new Hero(Heroes.IRON_MAN_NOIR));
+                heroes.add(new Hero(Heroes.BLACK_WIDOW, this));
+                heroes.add(new Hero(Heroes.CAPT_AMERICA, this));
+                heroes.add(new Hero(Heroes.IRON_MAN, this));
+                heroes.add(new Hero(Heroes.HULK, this));
+                heroes.add(new Hero(Heroes.HAWKEYE, this));
+                heroes.add(new Hero(Heroes.THOR, this));
+                heroes.add(new Hero(Heroes.IRON_MAN_NOIR, this));
                 break;
             case XMEN:
-                heroes.add(new Hero(Heroes.STORM));
-                heroes.add(new Hero(Heroes.WOLVERINE));
-                heroes.add(new Hero(Heroes.CYCLOPS));
-                heroes.add(new Hero(Heroes.ROGUE));
-                heroes.add(new Hero(Heroes.EMMA_FROST));
-                heroes.add(new Hero(Heroes.GAMBIT));
-                heroes.add(new Hero(Heroes.ANGEL_NOIR));
+                heroes.add(new Hero(Heroes.STORM, this));
+                heroes.add(new Hero(Heroes.WOLVERINE, this));
+                heroes.add(new Hero(Heroes.CYCLOPS, this));
+                heroes.add(new Hero(Heroes.ROGUE, this));
+                heroes.add(new Hero(Heroes.EMMA_FROST, this));
+                heroes.add(new Hero(Heroes.GAMBIT, this));
+                heroes.add(new Hero(Heroes.ANGEL_NOIR, this));
                 break;
             case SPIDER_FRIENDS:
-                heroes.add(new Hero(Heroes.SPIDER_MAN));
-                heroes.add(new Hero(Heroes.SPIDER_MAN_NOIR));
-                heroes.add(new Hero(Heroes.SPIDER_WOMAN));
-                heroes.add(new Hero(Heroes.BLACK_CAT));
-                heroes.add(new Hero(Heroes.SYMBIOTE_SPIDER_MAN));
-                heroes.add(new Hero(Heroes.SCARLET_SPIDER));
+                heroes.add(new Hero(Heroes.SPIDER_MAN, this));
+                heroes.add(new Hero(Heroes.SPIDER_MAN_NOIR, this));
+                heroes.add(new Hero(Heroes.SPIDER_WOMAN, this));
+                heroes.add(new Hero(Heroes.BLACK_CAT, this));
+                heroes.add(new Hero(Heroes.SYMBIOTE_SPIDER_MAN, this));
+                heroes.add(new Hero(Heroes.SCARLET_SPIDER, this));
                 break;
             case SHIELD:
-                heroes.add(new Hero(Heroes.NICK_FURY));
+                heroes.add(new Hero(Heroes.NICK_FURY, this));
                 break;
             case MERCS_FOR_MONEY:
-                heroes.add(new Hero(Heroes.DEADPOOL_DEADPOOL));
-                heroes.add(new Hero(Heroes.SOLO));
-                heroes.add(new Hero(Heroes.SLAPSTICK));
-                heroes.add(new Hero(Heroes.STINGRAY));
+                heroes.add(new Hero(Heroes.DEADPOOL_DEADPOOL, this));
+                heroes.add(new Hero(Heroes.SOLO, this));
+                heroes.add(new Hero(Heroes.SLAPSTICK, this));
+                heroes.add(new Hero(Heroes.STINGRAY, this));
                 break;
             case HYDRA:
-                heroes.add(new Hero(Heroes.BOB));
+                heroes.add(new Hero(Heroes.BOB, this));
                 break;
             case MARVEL_KNIGHTS:
-                heroes.add(new Hero(Heroes.DAREDEVIL_NOIR));
-                heroes.add(new Hero(Heroes.LUKE_CAGE_NOIR));
-                heroes.add(new Hero(Heroes.MOON_KNIGHT));
+                heroes.add(new Hero(Heroes.DAREDEVIL_NOIR, this));
+                heroes.add(new Hero(Heroes.LUKE_CAGE_NOIR, this));
+                heroes.add(new Hero(Heroes.MOON_KNIGHT, this));
                 break;
             default:
-                heroes.add(new Hero(Heroes.DEADPOOL_BASE));
+                heroes.add(new Hero(Heroes.DEADPOOL_BASE, this));
         }
         int option = random.nextInt(heroes.size());
         return heroes.get(option);
     }
 
     private void chooseMastermind(){
-        mastermind = new Mastermind(Masterminds.values()[random.nextInt(Masterminds.values().length)]);
+        mastermind = new Mastermind(Masterminds.values()[random.nextInt(Masterminds.values().length)], this);
         switch(mastermind.getMastermind()){
             case RED_SKULL:
-                addVillain(new Villain(VillainGroups.HYDRA));
+                addVillain(new Villain(VillainGroups.HYDRA, this));
                 break;
             case MAGNETO:
-                addVillain(new Villain(VillainGroups.BROTHERHOOD));
+                addVillain(new Villain(VillainGroups.BROTHERHOOD, this));
                 break;
             case LOKI:
-                addVillain(new Villain(VillainGroups.ENEMIES_OF_ASGARD));
+                addVillain(new Villain(VillainGroups.ENEMIES_OF_ASGARD, this));
                 break;
             case DR_DOOM:
-                addHenchman(new Henchman(Henchmen.DOOMBOT_LEGION));
+                addHenchman(new Henchman(Henchmen.DOOMBOT_LEGION, this));
                 break;
             case EVIL_DEADPOOL:
-                addVillain(new Villain(VillainGroups.EVIL_DEADPOOL_CORPSE));
+                addVillain(new Villain(VillainGroups.EVIL_DEADPOOL_CORPSE, this));
                 break;
             case MACHO_GOMEZ:
-                addVillain(new Villain(VillainGroups.DEADPOOL_FRIENDS));
+                addVillain(new Villain(VillainGroups.DEADPOOL_FRIENDS, this));
                 break;
             case CHARLES_XAVIER_PROFESSOR_CRIME:
-                addVillain(new Villain(VillainGroups.XMEN_NOIR));
+                addVillain(new Villain(VillainGroups.XMEN_NOIR, this));
                 break;
             case GOBLIN_UNDERWORLD_BOSS:
-                addVillain(new Villain(VillainGroups.GOBLIN_FREAK_SHOW));
+                addVillain(new Villain(VillainGroups.GOBLIN_FREAK_SHOW, this));
                 break;
             case MYSTERIO:
-                addVillain(new Villain(VillainGroups.SINISTER_SIX));
+                addVillain(new Villain(VillainGroups.SINISTER_SIX, this));
                 break;
             case CARNAGE:
-                addVillain(new Villain(VillainGroups.MAXIUMUM_CARNAGE));
+                addVillain(new Villain(VillainGroups.MAXIUMUM_CARNAGE, this));
             default:
         }
+        TextView mastermindLabel = (TextView) findViewById(R.id.mastermindLabel);
+        mastermindLabel.setText(mastermind.getCardTitle());
     }
 
     private void chooseVillains() {
@@ -303,9 +314,11 @@ public class SetupActivity extends AppCompatActivity {
                 }
             }
             if(!pickedAlready){
-                addVillain(new Villain(villain));
+                addVillain(new Villain(villain, this));
             }
         }
+        TextView villainLabel = (TextView) findViewById(R.id.villainLabel);
+        villainLabel.setText(buildStringList(villains));
     }
 
     private void chooseHeroes() {
@@ -319,9 +332,11 @@ public class SetupActivity extends AppCompatActivity {
                 }
             }
             if(!pickedAlready){
-                addHero(new Hero(hero));
+                addHero(new Hero(hero, this));
             }
         }
+        TextView heroesLabel = (TextView) findViewById(R.id.heroesLabel);
+        heroesLabel.setText(buildStringList(heroes));
     }
 
     private void chooseHenchmen() {
@@ -335,9 +350,11 @@ public class SetupActivity extends AppCompatActivity {
                 }
             }
             if(!pickedAlready){
-                addHenchman(new Henchman(henchman));
+                addHenchman(new Henchman(henchman, this));
             }
         }
+        TextView henchmenLabel = (TextView) findViewById(R.id.henchmenLabel);
+        henchmenLabel.setText(buildStringList(henchmen));
     }
 
     private void addVillain(Villain villain){
@@ -353,5 +370,13 @@ public class SetupActivity extends AppCompatActivity {
     private void addHenchman(Henchman henchman){
         henchmen.add(henchman);
         numHenchmen--;
+    }
+
+    private String buildStringList(List<? extends Card> cards){
+        String result = "";
+        for(Card next: cards){
+            result += next.getCardTitle() + '\n';
+        }
+        return result;
     }
 }

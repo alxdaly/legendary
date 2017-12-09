@@ -1,5 +1,9 @@
 package com.example.alxdaly.legendarysetuphelper.pojo;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.example.alxdaly.legendarysetuphelper.R;
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
 
@@ -12,10 +16,12 @@ import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
 public class Henchman implements Card {
     private Henchmen henchmen;
     private Expansions expansion;
+    private Context context;
 
-    public Henchman(Henchmen henchmen){
+    public Henchman(Henchmen henchmen, Context context){
         this.henchmen = henchmen;
         this.expansion = setExpansion();
+        this.context = context;
     }
 
     public Henchmen getHenchmen() {
@@ -27,7 +33,23 @@ public class Henchman implements Card {
     }
 
     @Override
-    public String getString() {
+    public String getCardTitle() {
+        switch(this.henchmen){
+            case HAND_NINJAS:
+                return context.getResources().getString(R.string.HAND_NINJAS);
+            case DOOMBOT_LEGION:
+                return context.getResources().getString(R.string.DOOMBOT_LEGION);
+            case SAVAGE_LAND_MUTATES:
+                return context.getResources().getString(R.string.SAVAGE_LAND_MUTATES);
+            case SENTINEL:
+                return context.getResources().getString(R.string.SENTINEL);
+            default:
+                return "";
+        }
+    }
+
+    @Override
+    public String toString() {
         return "Expansion: " + expansion + ",\n" +
                 "Card: " + henchmen + ",\n";
     }

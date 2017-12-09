@@ -9,6 +9,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
  */
 
 public interface Card {
+    String getCardTitle();
     Expansions getExpansion();
-    String getString();
+    String toString();
 }
