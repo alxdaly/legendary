@@ -1,6 +1,5 @@
 package com.example.alxdaly.legendarysetuphelper;
 
-import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,16 +18,10 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Mastermind;
 import com.example.alxdaly.legendarysetuphelper.pojo.Scheme;
 import com.example.alxdaly.legendarysetuphelper.pojo.Villain;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class SetupActivity extends AppCompatActivity {
     Random random;

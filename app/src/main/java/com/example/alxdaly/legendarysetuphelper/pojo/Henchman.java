@@ -1,7 +1,6 @@
 package com.example.alxdaly.legendarysetuphelper.pojo;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.example.alxdaly.legendarysetuphelper.R;
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
