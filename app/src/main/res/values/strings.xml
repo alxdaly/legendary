@@ -17,6 +17,8 @@
     <string name="P1hench">*Use only 3 cards</string>
     <string name="heroes">Heroes: </string>
     <string name="bystanders">Bystanders: </string>
+    <string name="twists">Twists: </string>
+    <string name="notes">Notes: </string>
 
     <!-- Schemes strings -->
     <string name="COSMIC_CUBE">Unleash the Power of the Cosmic Cube</string>

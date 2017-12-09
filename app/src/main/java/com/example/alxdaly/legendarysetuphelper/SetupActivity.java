@@ -53,6 +53,7 @@ public class SetupActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         random = new Random();
         numPlayers = extra.getInt("numberOfPlayers");
+        notes = "";
         setup(numPlayers);
         try {
             setupCards();
@@ -110,11 +111,13 @@ public class SetupActivity extends AppCompatActivity {
 
     private void setupCards() throws IOException{
         chooseScheme();
+        getTwists();
         getBystanders();
         chooseMastermind();
         chooseVillains();
         chooseHenchmen();
         chooseHeroes();
+        getNotes();
     }
 
     private void chooseScheme() {
@@ -210,6 +213,11 @@ public class SetupActivity extends AppCompatActivity {
     private void getBystanders() {
         TextView bystanderLabel = (TextView) findViewById(R.id.bystanderLabel);
         bystanderLabel.setText(numBystanders + "");
+    }
+
+    private void getTwists() {
+        TextView twistLabel = (TextView) findViewById(R.id.twistLabel);
+        twistLabel.setText(twists + "");
     }
 
     private Hero chooseTeamIconHero(TeamIcons teamIcon){
@@ -355,6 +363,11 @@ public class SetupActivity extends AppCompatActivity {
         }
         TextView henchmenLabel = (TextView) findViewById(R.id.henchmenLabel);
         henchmenLabel.setText(buildStringList(henchmen));
+    }
+
+    private void getNotes() {
+        TextView notesLabel = (TextView) findViewById(R.id.notesLabel);
+        notesLabel.setText(notes);
     }
 
     private void addVillain(Villain villain){

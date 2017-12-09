@@ -56,7 +56,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="45dp">
 
             <TextView
                 android:text="@string/scheme"
@@ -76,6 +76,29 @@
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:text="@string/twists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/twistTitle"
+                android:fontFamily="monospace"
+                android:textSize="20sp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/twistLabel"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -169,7 +192,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="110dp">
 
             <TextView
                 android:text="@string/heroes"
@@ -184,6 +207,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/heroesLabel"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:text="@string/notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notesTitle"
+                android:fontFamily="monospace"
+                android:textSize="20sp"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notesLabel"
                 android:layout_weight="1"
                 android:fontFamily="monospace"
                 android:textColor="@android:color/white" />
