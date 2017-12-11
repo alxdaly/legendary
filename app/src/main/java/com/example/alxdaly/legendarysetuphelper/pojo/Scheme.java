@@ -105,4 +105,22 @@ public class Scheme implements Card {
                 return Expansions.BASE;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Scheme scheme1 = (Scheme) o;
+
+        if (scheme != scheme1.scheme) return false;
+        return expansion == scheme1.expansion;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = scheme != null ? scheme.hashCode() : 0;
+        result = 31 * result + (expansion != null ? expansion.hashCode() : 0);
+        return result;
+    }
 }

@@ -182,4 +182,24 @@ public class Hero implements Card{
                 return TeamIcons.NONE;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Hero hero1 = (Hero) o;
+
+        if (hero != hero1.hero) return false;
+        if (expansion != hero1.expansion) return false;
+        return teamIcon == hero1.teamIcon;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = hero != null ? hero.hashCode() : 0;
+        result = 31 * result + (expansion != null ? expansion.hashCode() : 0);
+        result = 31 * result + (teamIcon != null ? teamIcon.hashCode() : 0);
+        return result;
+    }
 }

@@ -84,4 +84,22 @@ public class Villain implements Card{
                 return Expansions.BASE;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Villain villain1 = (Villain) o;
+
+        if (villain != villain1.villain) return false;
+        return expansion == villain1.expansion;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = villain != null ? villain.hashCode() : 0;
+        result = 31 * result + (expansion != null ? expansion.hashCode() : 0);
+        return result;
+    }
 }

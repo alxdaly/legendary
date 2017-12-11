@@ -59,4 +59,22 @@ public class Henchman implements Card {
                 return Expansions.BASE;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Henchman henchman = (Henchman) o;
+
+        if (henchmen != henchman.henchmen) return false;
+        return expansion == henchman.expansion;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = henchmen != null ? henchmen.hashCode() : 0;
+        result = 31 * result + (expansion != null ? expansion.hashCode() : 0);
+        return result;
+    }
 }

@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
 import com.example.alxdaly.legendarysetuphelper.enums.Heroes;
 import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
 import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
 import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
+import com.example.alxdaly.legendarysetuphelper.helper.HenchmenHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
@@ -341,21 +343,22 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseHenchmen() {
-        while(numHenchmen > 0){
-            Henchmen henchman = Henchmen.values()[random.nextInt(Henchmen.values().length)];
-            boolean pickedAlready = false;
-            for(Henchman next: henchmen){
-                if(next.getHenchmen() == henchman){
-                    pickedAlready = true;
-                    break;
-                }
-            }
-            if(!pickedAlready){
-                addHenchman(new Henchman(henchman, this));
-            }
-        }
+//        while(numHenchmen > 0){
+//            Henchmen henchman = Henchmen.values()[random.nextInt(Henchmen.values().length)];
+//            boolean pickedAlready = false;
+//            for(Henchman next: henchmen){
+//                if(next.getHenchmen() == henchman){
+//                    pickedAlready = true;
+//                    break;
+//                }
+//            }
+//            if(!pickedAlready){
+//                addHenchman(new Henchman(henchman, this));
+//            }
+//        }
+        HenchmenHelper henchmenHelper = new HenchmenHelper(new ArrayList<Expansions>(), henchmen, numHenchmen, this);
         TextView henchmenLabel = (TextView) findViewById(R.id.henchmenLabel);
-        henchmenLabel.setText(buildStringList(henchmen));
+        henchmenLabel.setText(buildStringList(henchmenHelper.chooseCards()));
     }
 
     private void getNotes() {
