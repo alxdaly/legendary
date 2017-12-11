@@ -14,6 +14,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
 import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 import com.example.alxdaly.legendarysetuphelper.helper.HenchmenHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.HeroHelper;
+import com.example.alxdaly.legendarysetuphelper.helper.MastermindHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.VillainHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
@@ -271,7 +272,8 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseMastermind(){
-        mastermind = new Mastermind(Masterminds.values()[random.nextInt(Masterminds.values().length)], this);
+        MastermindHelper mastermindHelper = new MastermindHelper(new ArrayList<Expansions>(), new ArrayList<Mastermind>(), this);
+        mastermind = (Mastermind) mastermindHelper.chooseCards().get(0);
         switch(mastermind.getMastermind()){
             case RED_SKULL:
                 addVillain(new Villain(VillainGroups.HYDRA, this));
@@ -309,19 +311,6 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseVillains() {
-//        while(numVillains > 0){
-//            VillainGroups villain = VillainGroups.values()[random.nextInt(VillainGroups.values().length)];
-//            boolean pickedAlready = false;
-//            for(Villain next: villains){
-//                if(next.getVillain() == villain){
-//                    pickedAlready = true;
-//                    break;
-//                }
-//            }
-//            if(!pickedAlready){
-//                addVillain(new Villain(villain, this));
-//            }
-//        }
         VillainHelper villainHelper = new VillainHelper(new ArrayList<Expansions>(), villains, numVillains, this);
         TextView villainLabel = (TextView) findViewById(R.id.villainLabel);
         villainLabel.setText(buildStringList(villainHelper.chooseCards()));
