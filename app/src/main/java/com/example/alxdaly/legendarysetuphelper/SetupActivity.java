@@ -15,6 +15,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 import com.example.alxdaly.legendarysetuphelper.helper.HenchmenHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.HeroHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.MastermindHelper;
+import com.example.alxdaly.legendarysetuphelper.helper.SchemeHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.VillainHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
@@ -119,7 +120,8 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseScheme() {
-        scheme = new Scheme(Schemes.values()[random.nextInt(Schemes.values().length)], this);
+        SchemeHelper schemeHelper = new SchemeHelper(new ArrayList<Expansions>(), new ArrayList<Scheme>(), this);
+        scheme = (Scheme) schemeHelper.chooseCards().get(0);
         switch(scheme.getScheme()){
             case NEGATIVE_ZONE:
                 twists = 8;
