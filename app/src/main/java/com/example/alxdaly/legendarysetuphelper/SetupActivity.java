@@ -13,6 +13,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
 import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 import com.example.alxdaly.legendarysetuphelper.helper.HenchmenHelper;
+import com.example.alxdaly.legendarysetuphelper.helper.HeroHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
@@ -325,37 +326,12 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseHeroes() {
-        while(numHeroes > 0){
-            Heroes hero = Heroes.values()[random.nextInt(Heroes.values().length)];
-            boolean pickedAlready = false;
-            for(Hero next: heroes){
-                if(next.getHero() == hero){
-                    pickedAlready = true;
-                    break;
-                }
-            }
-            if(!pickedAlready){
-                addHero(new Hero(hero, this));
-            }
-        }
+        HeroHelper heroHelper = new HeroHelper(new ArrayList<Expansions>(), heroes, numHeroes, this);
         TextView heroesLabel = (TextView) findViewById(R.id.heroesLabel);
-        heroesLabel.setText(buildStringList(heroes));
+        heroesLabel.setText(buildStringList(heroHelper.chooseCards()));
     }
 
     private void chooseHenchmen() {
-//        while(numHenchmen > 0){
-//            Henchmen henchman = Henchmen.values()[random.nextInt(Henchmen.values().length)];
-//            boolean pickedAlready = false;
-//            for(Henchman next: henchmen){
-//                if(next.getHenchmen() == henchman){
-//                    pickedAlready = true;
-//                    break;
-//                }
-//            }
-//            if(!pickedAlready){
-//                addHenchman(new Henchman(henchman, this));
-//            }
-//        }
         HenchmenHelper henchmenHelper = new HenchmenHelper(new ArrayList<Expansions>(), henchmen, numHenchmen, this);
         TextView henchmenLabel = (TextView) findViewById(R.id.henchmenLabel);
         henchmenLabel.setText(buildStringList(henchmenHelper.chooseCards()));
@@ -373,12 +349,10 @@ public class SetupActivity extends AppCompatActivity {
 
     private void addHero(Hero hero){
         heroes.add(hero);
-        numHeroes--;
     }
 
     private void addHenchman(Henchman henchman){
         henchmen.add(henchman);
-        numHenchmen--;
     }
 
     private String buildStringList(List<? extends Card> cards){

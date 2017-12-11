@@ -21,11 +21,6 @@ public class HenchmenHelper extends CardHelper {
     }
 
     @Override
-    protected List<Card> setCards(List<? extends Card> cards){
-        return (ArrayList<Card>) cards;
-    }
-
-    @Override
     protected Card getCardOption() {
         Henchmen henchmen = Henchmen.values()[random.nextInt(Henchmen.values().length)];
         return new Henchman(henchmen, context);

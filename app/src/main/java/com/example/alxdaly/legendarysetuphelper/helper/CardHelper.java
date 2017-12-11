@@ -31,7 +31,7 @@ public abstract class CardHelper {
     }
 
     protected List<Card> setCards(List<? extends Card> cards){
-        return new ArrayList<Card>();
+        return (ArrayList<Card>) cards;
     }
 
     public List<? extends Card> chooseCards() {
