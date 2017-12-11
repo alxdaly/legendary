@@ -14,6 +14,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
 import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 import com.example.alxdaly.legendarysetuphelper.helper.HenchmenHelper;
 import com.example.alxdaly.legendarysetuphelper.helper.HeroHelper;
+import com.example.alxdaly.legendarysetuphelper.helper.VillainHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
@@ -308,21 +309,22 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void chooseVillains() {
-        while(numVillains > 0){
-            VillainGroups villain = VillainGroups.values()[random.nextInt(VillainGroups.values().length)];
-            boolean pickedAlready = false;
-            for(Villain next: villains){
-                if(next.getVillain() == villain){
-                    pickedAlready = true;
-                    break;
-                }
-            }
-            if(!pickedAlready){
-                addVillain(new Villain(villain, this));
-            }
-        }
+//        while(numVillains > 0){
+//            VillainGroups villain = VillainGroups.values()[random.nextInt(VillainGroups.values().length)];
+//            boolean pickedAlready = false;
+//            for(Villain next: villains){
+//                if(next.getVillain() == villain){
+//                    pickedAlready = true;
+//                    break;
+//                }
+//            }
+//            if(!pickedAlready){
+//                addVillain(new Villain(villain, this));
+//            }
+//        }
+        VillainHelper villainHelper = new VillainHelper(new ArrayList<Expansions>(), villains, numVillains, this);
         TextView villainLabel = (TextView) findViewById(R.id.villainLabel);
-        villainLabel.setText(buildStringList(villains));
+        villainLabel.setText(buildStringList(villainHelper.chooseCards()));
     }
 
     private void chooseHeroes() {
@@ -344,7 +346,6 @@ public class SetupActivity extends AppCompatActivity {
 
     private void addVillain(Villain villain){
         villains.add(villain);
-        numVillains--;
     }
 
     private void addHero(Hero hero){
