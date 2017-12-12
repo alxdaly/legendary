@@ -7,7 +7,6 @@ import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

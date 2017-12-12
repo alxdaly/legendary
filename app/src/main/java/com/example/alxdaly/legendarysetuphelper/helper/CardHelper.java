@@ -30,7 +30,7 @@ public abstract class CardHelper {
         this.context = context;
     }
 
-    protected List<Card> setCards(List<? extends Card> cards){
+    private List<Card> setCards(List<? extends Card> cards){
         return (ArrayList<Card>) cards;
     }
 
@@ -61,5 +61,25 @@ public abstract class CardHelper {
             }
         }
         return true;
+    }
+
+    public void setNumCards(int numCards) {
+        this.numCards = numCards;
+    }
+
+    public int getNumCards() {
+        return numCards;
+    }
+
+    public void incrementNumCards() {
+        this.numCards++;
+    }
+
+    public List<Card> getCards() {
+        return (List<Card>) this.cards;
+    }
+
+    public void addCard(Card card){
+        ((List<Card>) cards).add(card);
     }
 }
