@@ -102,12 +102,12 @@ public class SetupActivity extends AppCompatActivity {
 
     private void getBystanders() {
         TextView bystanderLabel = (TextView) findViewById(R.id.bystanderLabel);
-        bystanderLabel.setText(this.deckHelper.getNumBystanders());
+        bystanderLabel.setText(this.deckHelper.getNumBystanders() + "");
     }
 
     private void getTwists() {
         TextView twistLabel = (TextView) findViewById(R.id.twistLabel);
-        twistLabel.setText(this.deckHelper.getTwists());
+        twistLabel.setText(this.deckHelper.getTwists() + "");
     }
 
     private void chooseMastermind(){
