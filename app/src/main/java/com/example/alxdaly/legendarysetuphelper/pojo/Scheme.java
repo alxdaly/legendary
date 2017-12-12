@@ -7,6 +7,8 @@ import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 
 /**
+ * Card holds Scheme information
+ *
  * Created by alxdaly on 12/8/2017.
  */
 

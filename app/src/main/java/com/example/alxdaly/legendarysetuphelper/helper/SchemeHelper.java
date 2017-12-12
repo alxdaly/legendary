@@ -10,6 +10,8 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Scheme;
 import java.util.List;
 
 /**
+ * Grabs Scheme for DeckHelper
+ *
  * Created by alxdaly on 12/11/2017.
  */
 

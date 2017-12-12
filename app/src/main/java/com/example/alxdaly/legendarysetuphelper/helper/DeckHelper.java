@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Handles logic of SetupActivity
+ *
  * Created by alxdaly on 12/11/2017.
  */
 

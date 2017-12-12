@@ -46,6 +46,11 @@ public abstract class CardHelper {
         return cards;
     }
 
+    /**
+     * Function is overridden in Helper classes
+     *
+     * @return card
+     */
     protected Card getCardOption() {
         return null;
     }

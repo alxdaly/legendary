@@ -7,7 +7,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Henchmen;
 
 /**
- * Holds Henchmen Information
+ * Card holds Henchman information
  *
  * Created by alxdaly on 1/11/2017.
  */

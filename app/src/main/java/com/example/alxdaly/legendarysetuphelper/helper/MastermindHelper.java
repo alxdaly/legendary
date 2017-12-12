@@ -10,6 +10,8 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Mastermind;
 import java.util.List;
 
 /**
+ * Grabs Mastermind for DeckHelper
+ *
  * Created by alxdaly on 12/11/2017.
  */
 

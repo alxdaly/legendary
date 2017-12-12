@@ -10,6 +10,8 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Hero;
 import java.util.List;
 
 /**
+ * Grab Heroes for DeckHelper
+ *
  * Created by alxdaly on 12/10/2017.
  */
 

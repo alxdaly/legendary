@@ -8,7 +8,7 @@ import com.example.alxdaly.legendarysetuphelper.enums.Heroes;
 import com.example.alxdaly.legendarysetuphelper.enums.TeamIcons;
 
 /**
- * Holds Hero Information
+ * Card holds Hero information
  *
  * Created by alxdaly on 1/11/2017.
  */

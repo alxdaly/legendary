@@ -7,6 +7,8 @@ import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.VillainGroups;
 
 /**
+ * Card that holds Villain info
+ *
  * Created by alxdaly on 1/11/2017.
  */
 

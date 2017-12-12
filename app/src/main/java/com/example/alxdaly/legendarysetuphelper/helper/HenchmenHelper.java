@@ -10,6 +10,8 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
 import java.util.List;
 
 /**
+ * Grabs Henchmen for DeckHelper
+ *
  * Created by alxdaly on 12/10/2017.
  */
 

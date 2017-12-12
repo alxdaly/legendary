@@ -102,12 +102,12 @@ public class SetupActivity extends AppCompatActivity {
 
     private void getBystanders() {
         TextView bystanderLabel = (TextView) findViewById(R.id.bystanderLabel);
-        bystanderLabel.setText(this.deckHelper.getNumBystanders() + "");
+        bystanderLabel.setText(this.deckHelper.getNumBystanders());
     }
 
     private void getTwists() {
         TextView twistLabel = (TextView) findViewById(R.id.twistLabel);
-        twistLabel.setText(this.deckHelper.getTwists() + "");
+        twistLabel.setText(this.deckHelper.getTwists());
     }
 
     private void chooseMastermind(){
@@ -140,10 +140,11 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private String buildStringList(List<? extends Card> cards){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(Card next: cards){
-            result += next.getCardTitle() + '\n';
+            result.append(next.getCardTitle());
+            result.append('\n');
         }
-        return result;
+        return result.toString();
     }
 }

@@ -7,6 +7,8 @@ import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
 
 /**
+ * Card holds Mastermind information
+ *
  * Created by alxdaly on 1/11/2017.
  */
 

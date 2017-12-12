@@ -10,6 +10,8 @@ import com.example.alxdaly.legendarysetuphelper.pojo.Villain;
 import java.util.List;
 
 /**
+ * Grabs Villains for DeckHelper
+ *
  * Created by alxdaly on 12/11/2017.
  */
 

@@ -3,7 +3,7 @@ package com.example.alxdaly.legendarysetuphelper.pojo;
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 
 /**
- * Base for all cards
+ * Interface for all cards to use
  *
  * Created by alxdaly on 1/11/2017.
  */
