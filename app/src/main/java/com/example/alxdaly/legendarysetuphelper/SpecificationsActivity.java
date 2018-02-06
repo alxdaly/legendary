@@ -7,10 +7,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
-import com.example.alxdaly.legendarysetuphelper.pojo.Mastermind;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 
 public class SpecificationsActivity extends AppCompatActivity {
 
@@ -24,6 +21,7 @@ public class SpecificationsActivity extends AppCompatActivity {
         this.numPlayers = extra.getInt("numberOfPlayers");
         setSubtitle(this.numPlayers);
         setMastermindSpinner();
+        setSchemeSpinner();
     }
 
     private void setSubtitle(int numPlayers) {
@@ -53,12 +51,33 @@ public class SpecificationsActivity extends AppCompatActivity {
         Masterminds[] masterminds = Masterminds.values();
         String[] mastermindOptions = new String[masterminds.length + 1];
         int i;
+        mastermindOptions[0] = getResources().getString(R.string.random);
         for(i = 0; i < masterminds.length; i++){
-            mastermindOptions[i] = masterminds[i].toString();
+            mastermindOptions[i+1] = masterminds[i].toString();
         }
-        mastermindOptions[i] = getResources().getString(R.string.random);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, mastermindOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, removeSpaces(mastermindOptions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mastermindOption.setAdapter(adapter);
+    }
+
+    private void setSchemeSpinner() {
+        Spinner schemeOption = (Spinner) findViewById(R.id.schemeOption);
+        Schemes[] schemes = Schemes.values();
+        String[] schemeOptions = new String[schemes.length + 1];
+        int i;
+        schemeOptions[0] = getResources().getString(R.string.random);
+        for(i = 0; i < schemes.length; i++){
+            schemeOptions[i+1] = schemes[i].toString();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, removeSpaces(schemeOptions));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        schemeOption.setAdapter(adapter);
+    }
+
+    private String[] removeSpaces(String[] stringArray) {
+        for(int i = 0; i < stringArray.length; i++){
+            stringArray[i] = stringArray[i].replace('_', ' ');
+        }
+        return stringArray;
     }
 }
