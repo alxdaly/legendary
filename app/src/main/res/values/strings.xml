@@ -9,6 +9,11 @@
     <string name="P4">4 Player Game</string>
     <string name="P5">5 Player Game</string>
 
+    <!-- SpecificationsActivity -->
+    <string name="game_options">Game Options</string>
+    <string name="random">Random</string>
+    <string name="startGame">Start Game</string>
+
     <!-- SetupActivity strings -->
     <string name="mastermind">Mastermind: </string>
     <string name="scheme">Scheme: </string>

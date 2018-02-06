@@ -33,7 +33,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void goToP1Setup(View view){
-        Intent intent = new Intent(this, SetupActivity.class);
+        Intent intent = new Intent(this, SpecificationsActivity.class);
         intent.putExtra("numberOfPlayers", 1);
         startActivity(intent);
     }

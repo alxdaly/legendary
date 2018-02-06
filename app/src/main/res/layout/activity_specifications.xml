@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.alxdaly.legendarysetuphelper.SpecificationsActivity">
+
+    <include layout="@layout/content_start" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="14dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gameOptions"
+            android:text="@string/game_options"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textStyle="normal|bold"
+            android:textSize="25sp"
+            android:fontFamily="monospace"
+            android:textColor="#000088" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/numPlayersSubtitle"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textStyle="normal"
+            android:textSize="25sp"
+            android:fontFamily="monospace"
+            android:textColor="#000088" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:text="@string/mastermind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mastermindTitle"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="monospace" />
+
+                <Spinner
+                    android:id="@+id/mastermindOption"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:text="@string/scheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/schemeTitle"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:fontFamily="monospace" />
+
+                <Spinner
+                    android:id="@+id/schemeOption"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.46" />
+
+                <Button
+                    android:text="@string/startGame"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/startGame"
+                    android:layout_weight="0.46"
+                    android:layout_width="200sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.46" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
