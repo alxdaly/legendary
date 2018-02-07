@@ -39,25 +39,25 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void goToP2Setup(View view){
-        Intent intent = new Intent(this, SetupActivity.class);
+        Intent intent = new Intent(this, SpecificationsActivity.class);
         intent.putExtra("numberOfPlayers", 2);
         startActivity(intent);
     }
 
     public void goToP3Setup(View view){
-        Intent intent = new Intent(this, SetupActivity.class);
+        Intent intent = new Intent(this, SpecificationsActivity.class);
         intent.putExtra("numberOfPlayers", 3);
         startActivity(intent);
     }
 
     public void goToP4Setup(View view){
-        Intent intent = new Intent(this, SetupActivity.class);
+        Intent intent = new Intent(this, SpecificationsActivity.class);
         intent.putExtra("numberOfPlayers", 4);
         startActivity(intent);
     }
 
     public void goToP5Setup(View view){
-        Intent intent = new Intent(this, SetupActivity.class);
+        Intent intent = new Intent(this, SpecificationsActivity.class);
         intent.putExtra("numberOfPlayers", 5);
         startActivity(intent);
     }

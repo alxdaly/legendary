@@ -55,7 +55,7 @@ public class SpecificationsActivity extends AppCompatActivity {
         for(i = 0; i < masterminds.length; i++){
             mastermindOptions[i+1] = masterminds[i].toString();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, removeSpaces(mastermindOptions));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, removeSpaces(mastermindOptions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mastermindOption.setAdapter(adapter);
     }
@@ -69,7 +69,7 @@ public class SpecificationsActivity extends AppCompatActivity {
         for(i = 0; i < schemes.length; i++){
             schemeOptions[i+1] = schemes[i].toString();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, removeSpaces(schemeOptions));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, removeSpaces(schemeOptions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schemeOption.setAdapter(adapter);
     }
