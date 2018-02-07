@@ -38,7 +38,7 @@ public class DeckHelper {
 
     public DeckHelper(List<Expansions> expansions, String mastermind, String scheme,  Context context, int numPlayers, int numVillains, int numHenchmen, int numHeroes, int numBystanders) {
         this.context = context;
-        this.schemeHelper = new SchemeHelper(expansions, new ArrayList<Scheme>(), context);
+        this.schemeHelper = new SchemeHelper(expansions, new ArrayList<Scheme>(), context, scheme);
         this.mastermindHelper = new MastermindHelper(expansions, new ArrayList<Mastermind>(), context, mastermind);
         this.henchmenHelper = new HenchmenHelper(expansions, new ArrayList<Henchman>(), numHenchmen, context);
         this.heroHelper = new HeroHelper(expansions, new ArrayList<Hero>(), numHeroes, context);

@@ -2,6 +2,7 @@ package com.example.alxdaly.legendarysetuphelper.helper;
 
 import android.content.Context;
 
+import com.example.alxdaly.legendarysetuphelper.R;
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
@@ -16,14 +17,22 @@ import java.util.List;
  */
 
 public class SchemeHelper extends CardHelper {
+    private String scheme;
 
-    public SchemeHelper(List<Expansions> expansions, List<Scheme> cards, Context context){
+    public SchemeHelper(List<Expansions> expansions, List<Scheme> cards, Context context, String scheme){
         super(expansions, cards, 1, context);
+        this.scheme = scheme;
     }
 
     @Override
     protected Card getCardOption() {
-        Schemes scheme = Schemes.values()[random.nextInt(Schemes.values().length)];
-        return new Scheme(scheme, context);
+        Schemes schemes;
+        if(scheme.equals(context.getResources().getString(R.string.random))) {
+            schemes = Schemes.values()[random.nextInt(Schemes.values().length)];
+        }
+        else {
+            schemes = Schemes.valueOf(scheme);
+        }
+        return new Scheme(schemes, context);
     }
 }
