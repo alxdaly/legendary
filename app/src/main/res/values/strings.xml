@@ -11,7 +11,7 @@
 
     <!-- SpecificationsActivity -->
     <string name="game_options">Game Options</string>
-    <string name="random">RANDOM</string>
+    <string name="random">RANDOM\n</string>
     <string name="startGame">Start Game</string>
 
     <!-- SetupActivity strings -->
