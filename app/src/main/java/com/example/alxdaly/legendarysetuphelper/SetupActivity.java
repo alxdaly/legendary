@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
+import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
+import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 import com.example.alxdaly.legendarysetuphelper.helper.DeckHelper;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
 import com.example.alxdaly.legendarysetuphelper.pojo.Henchman;
@@ -26,7 +28,7 @@ public class SetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
         Bundle extra = getIntent().getExtras();
-        setup(extra.getInt("numberOfPlayers"));
+        setup(extra.getInt("numberOfPlayers"), extra.getString("mastermind"), extra.getString("scheme"));
         try {
             setupCards();
         }
@@ -35,7 +37,7 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
-    private void setup(int numPlayers){
+    private void setup(int numPlayers, String mastermind, String scheme){
         TextView gameTitle = (TextView) findViewById(R.id.gameTitle);
         int numVillains = 0;
         int numHenchmen = 0;
@@ -80,7 +82,7 @@ public class SetupActivity extends AppCompatActivity {
                 numBystanders = 12;
                 break;
         }
-        this.deckHelper = new DeckHelper(new ArrayList<Expansions>(), this, numPlayers, numVillains, numHenchmen, numHeroes, numBystanders);
+        this.deckHelper = new DeckHelper(new ArrayList<Expansions>(), mastermind, scheme, this, numPlayers, numVillains, numHenchmen, numHeroes, numBystanders);
     }
 
     private void setupCards() throws IOException{

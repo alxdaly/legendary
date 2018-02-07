@@ -2,6 +2,7 @@ package com.example.alxdaly.legendarysetuphelper.helper;
 
 import android.content.Context;
 
+import com.example.alxdaly.legendarysetuphelper.R;
 import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
 import com.example.alxdaly.legendarysetuphelper.pojo.Card;
@@ -16,14 +17,22 @@ import java.util.List;
  */
 
 public class MastermindHelper extends CardHelper {
+    private String mastermind;
 
-    public MastermindHelper(List<Expansions> expansions, List<Mastermind> cards, Context context){
+    public MastermindHelper(List<Expansions> expansions, List<Mastermind> cards, Context context, String mastermind){
         super(expansions, cards, 1, context);
+        this.mastermind = mastermind;
     }
 
     @Override
     protected Card getCardOption(){
-        Masterminds mastermind = Masterminds.values()[random.nextInt(Masterminds.values().length)];
-        return new Mastermind(mastermind, context);
+        Masterminds masterminds;
+        if(mastermind.equals(context.getResources().getString(R.string.random))){
+            masterminds = Masterminds.values()[random.nextInt(Masterminds.values().length)];
+        }
+        else {
+            masterminds = Masterminds.valueOf(mastermind);
+        }
+        return new Mastermind(masterminds, context);
     }
 }

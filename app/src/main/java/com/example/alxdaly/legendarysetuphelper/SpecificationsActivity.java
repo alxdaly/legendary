@@ -1,7 +1,11 @@
 package com.example.alxdaly.legendarysetuphelper;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -12,6 +16,8 @@ import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
 public class SpecificationsActivity extends AppCompatActivity {
 
     private int numPlayers;
+    private Spinner mastermindOption;
+    private Spinner schemeOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +25,19 @@ public class SpecificationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specifications);
         Bundle extra = getIntent().getExtras();
         this.numPlayers = extra.getInt("numberOfPlayers");
+        this.mastermindOption = (Spinner) findViewById(R.id.mastermindOption);
+        this.schemeOption = (Spinner) findViewById(R.id.schemeOption);
         setSubtitle(this.numPlayers);
         setMastermindSpinner();
         setSchemeSpinner();
+    }
+
+    public void goToSetup(View view){
+        Intent intent = new Intent(this, SetupActivity.class);
+        intent.putExtra("numberOfPlayers", this.numPlayers);
+        intent.putExtra("mastermind", resetSpinnerItem((String) this.mastermindOption.getSelectedItem()));
+        intent.putExtra("scheme", resetSpinnerItem((String) this.schemeOption.getSelectedItem()));
+        startActivity(intent);
     }
 
     private void setSubtitle(int numPlayers) {
@@ -47,7 +63,6 @@ public class SpecificationsActivity extends AppCompatActivity {
     }
 
     private void setMastermindSpinner() {
-        Spinner mastermindOption = (Spinner) findViewById(R.id.mastermindOption);
         Masterminds[] masterminds = Masterminds.values();
         String[] mastermindOptions = new String[masterminds.length + 1];
         int i;
@@ -58,10 +73,10 @@ public class SpecificationsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, removeSpaces(mastermindOptions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mastermindOption.setAdapter(adapter);
+        mastermindOption.setOnItemSelectedListener(new SpinnerActiviity());
     }
 
     private void setSchemeSpinner() {
-        Spinner schemeOption = (Spinner) findViewById(R.id.schemeOption);
         Schemes[] schemes = Schemes.values();
         String[] schemeOptions = new String[schemes.length + 1];
         int i;
@@ -72,6 +87,7 @@ public class SpecificationsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, removeSpaces(schemeOptions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schemeOption.setAdapter(adapter);
+        schemeOption.setOnItemSelectedListener(new SpinnerActiviity());
     }
 
     private String[] removeSpaces(String[] stringArray) {
@@ -79,5 +95,22 @@ public class SpecificationsActivity extends AppCompatActivity {
             stringArray[i] = stringArray[i].replace('_', ' ');
         }
         return stringArray;
+    }
+
+    private String resetSpinnerItem(String string) {
+        return string.replace(' ', '_');
+    }
+
+    private class SpinnerActiviity extends Activity implements AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent){
+
+        }
     }
 }
