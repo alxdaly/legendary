@@ -36,6 +36,10 @@ public abstract class CardHelper {
 
     public List<? extends Card> chooseCards() {
         List<Card> cardCollection = (ArrayList<Card>) cards;
+        if(numCards == 1){
+            ((ArrayList<Card>) cards).add(getCardOption());
+            return cards;
+        }
         while(cards.size() < numCards){
             Card card = getCardOption();
             if(isInChosenExpansions(card) && notInCards(card)){

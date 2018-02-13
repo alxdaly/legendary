@@ -36,7 +36,7 @@ public class DeckHelper {
     private String notes;
     private Random random;
 
-    public DeckHelper(List<Expansions> expansions, String mastermind, String scheme,  Context context, int numPlayers, int numVillains, int numHenchmen, int numHeroes, int numBystanders) {
+    public DeckHelper(List<Expansions> expansions, String mastermind, String scheme, Context context, int numPlayers, int numVillains, int numHenchmen, int numHeroes, int numBystanders) {
         this.context = context;
         this.schemeHelper = new SchemeHelper(expansions, new ArrayList<Scheme>(), context, scheme);
         this.mastermindHelper = new MastermindHelper(expansions, new ArrayList<Mastermind>(), context, mastermind);

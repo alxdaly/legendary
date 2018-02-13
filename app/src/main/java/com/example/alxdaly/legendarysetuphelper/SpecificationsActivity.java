@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.alxdaly.legendarysetuphelper.enums.Expansions;
 import com.example.alxdaly.legendarysetuphelper.enums.Masterminds;
 import com.example.alxdaly.legendarysetuphelper.enums.Schemes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpecificationsActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class SpecificationsActivity extends AppCompatActivity {
         intent.putExtra("numberOfPlayers", this.numPlayers);
         intent.putExtra("mastermind", resetSpinnerItem((String) this.mastermindOption.getSelectedItem()));
         intent.putExtra("scheme", resetSpinnerItem((String) this.schemeOption.getSelectedItem()));
+        intent.putExtra("expansions", this.gatherExpansions());
         startActivity(intent);
     }
 
@@ -99,6 +105,25 @@ public class SpecificationsActivity extends AppCompatActivity {
 
     private String resetSpinnerItem(String string) {
         return string.replace(' ', '_');
+    }
+
+    private ArrayList<Expansions> gatherExpansions() {
+        ArrayList<Expansions> expansions = new ArrayList<>();
+        CheckBox deadpoolCheckbox = (CheckBox) findViewById(R.id.deadpoolCheckbox);
+        CheckBox noirCheckbox = (CheckBox) findViewById(R.id.noirCheckbox);
+        CheckBox paintCheckbox = (CheckBox) findViewById(R.id.paintCheckbox);
+
+        expansions.add(Expansions.BASE);
+        if(deadpoolCheckbox.isChecked()){
+            expansions.add(Expansions.DEADPOOL);
+        }
+        if(noirCheckbox.isChecked()){
+            expansions.add(Expansions.NOIR);
+        }
+        if(paintCheckbox.isChecked()){
+            expansions.add(Expansions.PAINT_TOWN_RED);
+        }
+        return expansions;
     }
 
     private class SpinnerActiviity extends Activity implements AdapterView.OnItemSelectedListener {

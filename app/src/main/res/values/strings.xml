@@ -13,6 +13,7 @@
     <string name="game_options">Game Options</string>
     <string name="random">RANDOM\n</string>
     <string name="startGame">Start Game</string>
+    <string name="expansions">Expansions: </string>
 
     <!-- SetupActivity strings -->
     <string name="mastermind">Mastermind: </string>
@@ -24,6 +25,11 @@
     <string name="bystanders">Bystanders: </string>
     <string name="twists">Twists: </string>
     <string name="notes">Notes: </string>
+
+    <!-- Expansions strings -->
+    <string name="deadpool_expansion">Deadpool</string>
+    <string name="noir">Noir</string>
+    <string name="paint">Paint the Town Red</string>
 
     <!-- Schemes strings -->
     <string name="COSMIC_CUBE">Unleash the Power of the Cosmic Cube</string>

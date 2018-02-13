@@ -28,7 +28,7 @@ public class SetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
         Bundle extra = getIntent().getExtras();
-        setup(extra.getInt("numberOfPlayers"), extra.getString("mastermind"), extra.getString("scheme"));
+        setup(extra.getInt("numberOfPlayers"), extra.getString("mastermind"), extra.getString("scheme"), (ArrayList<Expansions>) extra.get("expansions"));
         try {
             setupCards();
         }
@@ -37,7 +37,7 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
-    private void setup(int numPlayers, String mastermind, String scheme){
+    private void setup(int numPlayers, String mastermind, String scheme, ArrayList<Expansions> expansions){
         TextView gameTitle = (TextView) findViewById(R.id.gameTitle);
         int numVillains = 0;
         int numHenchmen = 0;
@@ -82,7 +82,7 @@ public class SetupActivity extends AppCompatActivity {
                 numBystanders = 12;
                 break;
         }
-        this.deckHelper = new DeckHelper(new ArrayList<Expansions>(), mastermind, scheme, this, numPlayers, numVillains, numHenchmen, numHeroes, numBystanders);
+        this.deckHelper = new DeckHelper(expansions, mastermind, scheme, this, numPlayers, numVillains, numHenchmen, numHeroes, numBystanders);
     }
 
     private void setupCards() throws IOException{
